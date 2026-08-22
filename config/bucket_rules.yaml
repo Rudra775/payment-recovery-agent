@@ -1,0 +1,22 @@
+rules:
+  A_Technical:
+    description: "System or network failures, not the customer's fault."
+    allowed_actions:
+      - retry_immediate
+      - retry_scheduled
+    max_retries: 3
+
+  B_Recoverable_Customer:
+    description: "Customer-side failures that can be fixed with a nudge."
+    allowed_actions:
+      - retry_scheduled
+      - send_reminder
+      - offer_alt_method
+    max_retries: 2
+
+  C_Hard_Decline:
+    description: "High risk, fraud, or terminal declines."
+    allowed_actions:
+      - escalate_human
+      - stop
+    max_retries: 0
